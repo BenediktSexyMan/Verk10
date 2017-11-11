@@ -81,7 +81,7 @@ def home2():
     return template("index", info=info) if info.site() != "home" else "<meta http-equiv=\"refresh\" content=\"0; URL='/'\" />"
 
 if os.environ.get("IS_HEROKU") is not None:
-    run(host=0.0.0.0, port=os.environ.get("PORT"))
+    run(host="0.0.0.0", port=os.environ.get("PORT"))
 else:
     run()
 
