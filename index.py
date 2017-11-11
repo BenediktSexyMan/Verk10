@@ -1,3 +1,4 @@
+import os
 import pymysql as pms
 from bottle import *
 
@@ -79,6 +80,9 @@ def home2():
         response.delete_cookie("user")
     return template("index", info=info) if info.site() != "home" else "<meta http-equiv=\"refresh\" content=\"0; URL='/'\" />"
 
-run()
+if os.environ.get("IS_HEROKU") is not None:
+    run(host=0.0.0.0, port=os.environ.get("PORT"))
+else:
+    run()
 
 conn.close()
